@@ -1,10 +1,13 @@
 from signals import generate_signal
 from ema_strategy import ema_signal
+from macd_strategy import get_macd_signal
 
-def smart_signal():
 
-    rsi_data = generate_signal()
-    ema_data = ema_signal()
+def smart_signal(symbol="BTCUSDT"):
+
+    rsi_data = generate_signal(symbol)
+    ema_data = ema_signal(symbol)
+    macd_data = get_macd_signal(symbol)
 
     buy_score = 0
     sell_score = 0
@@ -21,6 +24,13 @@ def smart_signal():
     elif ema_data["signal"] == "SELL":
         sell_score += 1
 
+    # MACD
+    if macd_data["signal"] == "BUY":
+        buy_score += 1
+    elif macd_data["signal"] == "SELL":
+        sell_score += 1
+
+    # Final Decision
     if buy_score > sell_score:
         final_signal = "BUY"
 
@@ -30,14 +40,14 @@ def smart_signal():
     else:
         final_signal = "HOLD"
 
-    confidence = max(
-        buy_score,
-        sell_score
-    ) / 2 * 100
+    confidence = (
+        max(buy_score, sell_score) / 3
+    ) * 100
 
     return {
         "signal": final_signal,
-        "confidence": confidence,
+        "confidence": round(confidence, 2),
         "rsi": rsi_data["signal"],
-        "ema": ema_data["signal"]
+        "ema": ema_data["signal"],
+        "macd": macd_data["signal"]
     }

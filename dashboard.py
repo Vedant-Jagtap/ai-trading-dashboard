@@ -159,7 +159,8 @@ st.plotly_chart(
 )
 st.subheader("🤖 Smart Trading Signal")
 
-signal_data = smart_signal()
+signal_data = smart_signal(chart_symbol)
+
 
 col1, col2 = st.columns([1, 1])
 
@@ -191,6 +192,7 @@ with col2:
 
 st.write(f"RSI Signal : {signal_data['rsi']}")
 st.write(f"EMA Signal : {signal_data['ema']}")
+st.write(f"MACD Signal : {signal_data['macd']}")
 
 balance = get_balance()
 st.subheader("📊 Portfolio Summary")
