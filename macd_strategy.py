@@ -5,6 +5,13 @@ from market_data import get_klines
 def get_macd_signal(symbol="BTCUSDT"):
 
     df = get_klines(symbol)
+    if df is None or df.empty:
+     return {
+        "macd": 0,
+        "signal_line": 0,
+        "signal": "HOLD",
+        "trend": "No Data"
+    }
 
     # EMA 12
     ema12 = df["close"].ewm(span=12, adjust=False).mean()
@@ -18,6 +25,14 @@ def get_macd_signal(symbol="BTCUSDT"):
     # Signal Line
     signal_line = macd.ewm(span=9, adjust=False).mean()
 
+    if df is None or df.empty:
+        return {
+            "macd": 0,
+            "signal_line": 0,
+            "signal": "HOLD",
+            "trend": "No Data"
+        }
+   
     if macd.iloc[-1] > signal_line.iloc[-1]:
 
         signal = "BUY"

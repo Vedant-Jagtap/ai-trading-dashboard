@@ -1,6 +1,8 @@
 from client import get_client
 import pandas as pd
+
 client = get_client()
+
 
 def get_symbol_price(symbol):
 
@@ -12,6 +14,7 @@ def get_symbol_price(symbol):
         "symbol": ticker["symbol"],
         "price": ticker["price"]
     }
+
 
 def get_multiple_prices(symbols):
 
@@ -30,17 +33,11 @@ def get_multiple_prices(symbols):
 
     return prices
 
-def get_klines(symbol="BTCUSDT", interval="1m", limit=100):
 
-    klines = client.futures_klines(
-        symbol=symbol,
-        interval=interval,
-        limit=limit
-    )
-def get_historical_data(
+def get_klines(
     symbol="BTCUSDT",
-    interval="1h",
-    limit=500
+    interval="1m",
+    limit=100
 ):
 
     klines = client.futures_klines(
@@ -59,22 +56,11 @@ def get_historical_data(
             "close",
             "volume",
             "close_time",
-            "qav",
-            "trades",
-            "tb_base",
-            "tb_quote",
+            "quote_asset_volume",
+            "number_of_trades",
+            "taker_buy_base",
+            "taker_buy_quote",
             "ignore"
-        ]
-    )
-
-    df["close"] = df["close"].astype(float)
-
-    df = pd.DataFrame(
-        klines,
-        columns=[
-            "open_time", "open", "high", "low", "close", "volume",
-            "close_time", "quote_asset_volume", "number_of_trades",
-            "taker_buy_base", "taker_buy_quote", "ignore"
         ]
     )
 
@@ -85,3 +71,16 @@ def get_historical_data(
     df["volume"] = df["volume"].astype(float)
 
     return df
+
+
+def get_historical_data(
+    symbol="BTCUSDT",
+    interval="1h",
+    limit=500
+):
+
+    return get_klines(
+        symbol=symbol,
+        interval=interval,
+        limit=limit
+    )

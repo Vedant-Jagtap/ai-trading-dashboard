@@ -8,6 +8,15 @@ def smart_signal(symbol="BTCUSDT"):
     rsi_data = generate_signal(symbol)
     ema_data = ema_signal(symbol)
     macd_data = get_macd_signal(symbol)
+    
+    if not macd_data:
+        return {
+        "signal": "HOLD",
+        "confidence": 0,
+        "rsi": "HOLD",
+        "ema": "HOLD",
+        "macd": "HOLD"
+    }
 
     buy_score = 0
     sell_score = 0
