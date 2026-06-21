@@ -1,5 +1,6 @@
 from charts import get_klines
 from ta.momentum import RSIIndicator
+import numpy as np
 
 
 def run_strategy_backtest():
@@ -60,6 +61,11 @@ def run_strategy_backtest():
     gross_profit = 0
     gross_loss = 0
 
+    equity_curve = []
+    returns = []
+    peak_balance = starting_balance
+    max_drawdown = 0
+
     position_size = 0.01
 
     # Risk Management
@@ -114,7 +120,21 @@ def run_strategy_backtest():
             if pct_change <= stop_loss_pct:
 
                 balance += profit
+                returns.append(profit)
+                equity_curve.append(balance)
 
+                if balance > peak_balance:
+                    peak_balance = balance
+
+                drawdown = (
+                    (peak_balance - balance)
+                    / peak_balance
+                ) * 100
+
+                max_drawdown = max(
+                    max_drawdown,
+                    drawdown
+                )
                 losses += 1
                 gross_loss += profit
 
@@ -125,7 +145,21 @@ def run_strategy_backtest():
             elif pct_change >= take_profit_pct:
 
                 balance += profit
+                returns.append(profit)
+                equity_curve.append(balance)
 
+                if balance > peak_balance:
+                    peak_balance = balance
+
+                drawdown = (
+                    (peak_balance - balance)
+                    / peak_balance
+                ) * 100
+
+                max_drawdown = max(
+                    max_drawdown,
+                    drawdown
+                )
                 wins += 1
                 gross_profit += profit
 
@@ -136,7 +170,21 @@ def run_strategy_backtest():
             elif sell_score >= 2:
 
                 balance += profit
+                returns.append(profit)
+                equity_curve.append(balance)
 
+                if balance > peak_balance:
+                    peak_balance = balance
+
+                drawdown = (
+                    (peak_balance - balance)
+                    / peak_balance
+                ) * 100
+
+                max_drawdown = max(
+                    max_drawdown,
+                    drawdown
+                )
                 if profit > 0:
                     wins += 1
                     gross_profit += profit
@@ -156,6 +204,26 @@ def run_strategy_backtest():
         gross_profit / abs(gross_loss),
         2
     ) if gross_loss != 0 else 0
+    max_drawdown = round(
+        max_drawdown,
+        2
+    )
+
+    if len(returns) > 1:
+
+        sharpe_ratio = (
+            np.mean(returns)
+            / np.std(returns)
+        )
+
+    else:
+
+        sharpe_ratio = 0
+
+    sharpe_ratio = round(
+        sharpe_ratio,
+        2
+    )
 
     return {
         "starting_balance": starting_balance,
@@ -165,5 +233,7 @@ def run_strategy_backtest():
         "wins": wins,
         "losses": losses,
         "win_rate": win_rate,
-        "profit_factor": profit_factor
+        "profit_factor": profit_factor,
+        "max_drawdown": max_drawdown,
+        "sharpe_ratio": sharpe_ratio
     }
