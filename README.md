@@ -1,74 +1,174 @@
-# Binance Futures Testnet Trading Bot
+# AI-Powered Binance Futures Trading Dashboard
 
 ## Overview
 
-A Python-based trading bot that places MARKET and LIMIT orders on Binance Futures Testnet (USDT-M).
+The AI-Powered Binance Futures Trading Dashboard is a Python-based trading analytics platform built using Binance Futures Testnet APIs and Streamlit. The project enables users to monitor live cryptocurrency market data, execute simulated futures trades, analyze technical indicators, generate trading signals, and evaluate strategy performance through historical backtesting.
+
+The primary objective of this project was to understand how algorithmic trading systems are designed, how technical indicators can be combined into decision-making engines, and how trading strategies can be evaluated using quantitative performance metrics.
+
+---
 
 ## Features
 
-- Place MARKET orders
-- Place LIMIT orders
-- BUY and SELL support
-- Command-line interface using argparse
-- Input validation
-- Logging of requests, responses, and errors
-- Exception handling
+### Live Trading Dashboard
 
-## Project Structure
+* Real-time cryptocurrency price monitoring
+* Interactive Streamlit dashboard
+* Portfolio and account balance tracking
+* Open positions monitoring
+* Order placement interface
 
-```
-trading_bot/
-│
-├── client.py
-├── orders.py
-├── validators.py
-├── logging_config.py
-├── cli.py
-├── .env
-├── requirements.txt
-├── README.md
-└── logs/
-```
+### Binance Futures Integration
 
-## Installation
+* Secure API authentication
+* Market Order execution
+* Limit Order execution
+* Account information retrieval
+* Position management
 
-```bash
-pip install -r requirements.txt
-```
+### Technical Analysis
 
-## Configuration
+The dashboard implements multiple technical indicators:
 
-Create a `.env` file:
+#### RSI (Relative Strength Index)
 
-```env
-API_KEY=your_api_key
-API_SECRET=your_api_secret
-```
+* Detects overbought and oversold conditions
+* Generates BUY, SELL, and HOLD signals
 
-## Usage
+#### EMA (Exponential Moving Average)
 
-### MARKET Order
+* EMA20 and EMA50 crossover analysis
+* Trend identification
 
-```bash
-python cli.py --symbol BTCUSDT --side BUY --type MARKET --quantity 0.001
-```
+#### MACD (Moving Average Convergence Divergence)
 
-### LIMIT Order
+* Momentum analysis
+* Trend reversal detection
 
-```bash
-python cli.py --symbol BTCUSDT --side BUY --type LIMIT --quantity 0.001 --price 50000
-```
+### Smart Signal Engine
 
-## Logging
+A custom signal engine combines multiple indicators:
 
-Logs are stored in:
+RSI + EMA + MACD → BUY / SELL / HOLD
 
-```
-logs/trading.log
-```
+This reduces reliance on a single indicator and provides more robust trading decisions.
 
-## Assumptions
+### Historical Backtesting
 
-- Binance Futures Testnet is used.
-- User provides valid API credentials.
-- Quantity and symbol comply with Binance rules.
+The project includes a strategy backtesting module that evaluates trading strategies on historical Binance Futures data.
+
+Features:
+
+* Historical data retrieval
+* Trade simulation
+* Profit and loss calculation
+* Strategy performance evaluation
+
+### Risk Management
+
+Implemented risk controls include:
+
+* Stop Loss
+* Take Profit
+* Position sizing logic
+
+### Performance Analytics
+
+The strategy evaluation module calculates:
+
+* Net Profit
+* Total Trades
+* Winning Trades
+* Losing Trades
+* Win Rate
+* Profit Factor
+* Maximum Drawdown
+* Sharpe Ratio
+
+---
+
+## Technology Stack
+
+### Programming Language
+
+* Python
+
+### Libraries & Frameworks
+
+* Streamlit
+* Pandas
+* NumPy
+* TA (Technical Analysis Library)
+* Python Binance SDK
+* python-dotenv
+
+### APIs
+
+* Binance Futures Testnet API
+
+---
+
+## Project Architecture
+
+Binance Futures API
+↓
+Market Data Retrieval
+↓
+Technical Indicators
+(RSI, EMA, MACD)
+↓
+Smart Signal Engine
+↓
+Trading Dashboard
+↓
+Backtesting Engine
+↓
+Performance Analytics
+
+---
+
+## Backtesting Results
+
+Latest Strategy Metrics:
+
+* Profit: +4.89 USDT
+* Win Rate: 36.36%
+* Profit Factor: 1.08
+* Maximum Drawdown: 3.18%
+* Sharpe Ratio: 0.04
+
+These results demonstrate a complete workflow for evaluating trading strategies using historical data and risk-adjusted performance metrics.
+
+---
+
+## Learning Outcomes
+
+Through this project, I gained practical experience in:
+
+* Financial market data analysis
+* Binance API integration
+* Algorithmic trading concepts
+* Technical indicator implementation
+* Quantitative strategy evaluation
+* Risk management techniques
+* Streamlit dashboard development
+* Python project architecture
+
+---
+
+## Future Improvements
+
+Potential future enhancements include:
+
+* Machine Learning based signal prediction
+* Multi-asset portfolio management
+* Advanced strategy optimization
+* Trade journaling system
+* Cloud deployment
+* Automated trading execution
+
+---
+
+## Disclaimer
+
+This project is built for educational and research purposes using Binance Futures Testnet. It is not intended to provide financial advice or guarantee trading profitability.
