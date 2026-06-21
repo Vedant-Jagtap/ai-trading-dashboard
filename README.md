@@ -1,125 +1,130 @@
 # AI-Powered Binance Futures Trading Dashboard
 
-## Overview
+## Project Documentation
 
-The AI-Powered Binance Futures Trading Dashboard is a Python-based trading analytics platform built using Binance Futures Testnet APIs and Streamlit. The project enables users to monitor live cryptocurrency market data, execute simulated futures trades, analyze technical indicators, generate trading signals, and evaluate strategy performance through historical backtesting.
+### Author
 
-The primary objective of this project was to understand how algorithmic trading systems are designed, how technical indicators can be combined into decision-making engines, and how trading strategies can be evaluated using quantitative performance metrics.
+Vedant Jagtap
+
+### Project Type
+
+Cryptocurrency Trading Analytics Dashboard
+
+### Version
+
+v1.0
+
+### Status
+
+Completed (Portfolio Version)
 
 ---
 
-## Features
+# Table of Contents
 
-### Live Trading Dashboard
+1. Project Overview
+2. Problem Statement
+3. Project Objectives
+4. System Architecture
+5. Technology Stack
+6. Project Features
+7. Dashboard Walkthrough
+8. Technical Indicators
+9. Smart Signal Engine
+10. Portfolio Management
+11. Backtesting Engine
+12. Performance Metrics
+13. Project Structure
+14. Challenges Faced
+15. Learnings
+16. Future Scope
+17. Screenshots
+18. Conclusion
 
-* Real-time cryptocurrency price monitoring
-* Interactive Streamlit dashboard
-* Portfolio and account balance tracking
-* Open positions monitoring
-* Order placement interface
+---
 
-### Binance Futures Integration
+# 1. Project Overview
 
-* Secure API authentication
-* Market Order execution
-* Limit Order execution
-* Account information retrieval
-* Position management
+The AI-Powered Binance Futures Trading Dashboard is a real-time cryptocurrency trading analytics platform developed using Python, Streamlit, Binance Futures API, Pandas, Plotly, and technical analysis libraries.
+
+The dashboard allows users to monitor live cryptocurrency market prices, visualize candlestick charts, generate trading signals, manage portfolio information, track open positions, review trading history, and evaluate trading strategies through backtesting.
+
+The purpose of this project was to understand how modern trading platforms operate, how technical indicators are calculated, how market data flows through a system, and how trading decisions can be generated using algorithmic rules.
+
+This project serves as both a learning platform and a portfolio project demonstrating API integration, data processing, dashboard development, technical analysis, and quantitative trading concepts.
+
+---
+
+# 2. Problem Statement
+
+Most beginner traders struggle with:
+
+* Understanding market trends.
+* Reading candlestick charts.
+* Interpreting technical indicators.
+* Combining multiple indicators into a trading decision.
+* Evaluating strategy performance before risking capital.
+
+Professional trading platforms often provide these capabilities but are expensive, complex, or difficult for beginners to understand.
+
+This project was built to provide a simplified and educational trading dashboard that combines market data, technical indicators, trading signals, and performance analytics in one place.
+
+---
+
+# 3. Project Objectives
+
+The main objectives of this project were:
+
+### Market Monitoring
+
+* Display live Binance Futures prices.
+* Support multiple cryptocurrency trading pairs.
+* Visualize price movement through candlestick charts.
 
 ### Technical Analysis
 
-The dashboard implements multiple technical indicators:
+* Implement RSI indicator.
+* Implement EMA crossover strategy.
+* Implement MACD indicator.
+* Generate actionable trading signals.
 
-#### RSI (Relative Strength Index)
+### Trading Analytics
 
-* Detects overbought and oversold conditions
-* Generates BUY, SELL, and HOLD signals
+* Track account balances.
+* Display open positions.
+* Monitor unrealized profit and loss.
+* Maintain trade history.
 
-#### EMA (Exponential Moving Average)
+### Strategy Evaluation
 
-* EMA20 and EMA50 crossover analysis
-* Trend identification
-
-#### MACD (Moving Average Convergence Divergence)
-
-* Momentum analysis
-* Trend reversal detection
-
-### Smart Signal Engine
-
-A custom signal engine combines multiple indicators:
-
-RSI + EMA + MACD → BUY / SELL / HOLD
-
-This reduces reliance on a single indicator and provides more robust trading decisions.
-
-### Historical Backtesting
-
-The project includes a strategy backtesting module that evaluates trading strategies on historical Binance Futures data.
-
-Features:
-
-* Historical data retrieval
-* Trade simulation
-* Profit and loss calculation
-* Strategy performance evaluation
-
-### Risk Management
-
-Implemented risk controls include:
-
-* Stop Loss
-* Take Profit
-* Position sizing logic
-
-### Performance Analytics
-
-The strategy evaluation module calculates:
-
-* Net Profit
-* Total Trades
-* Winning Trades
-* Losing Trades
-* Win Rate
-* Profit Factor
-* Maximum Drawdown
-* Sharpe Ratio
+* Test strategies on historical market data.
+* Measure profitability.
+* Calculate risk metrics.
+* Evaluate trading performance.
 
 ---
 
-## Technology Stack
+# 4. System Architecture
 
-### Programming Language
+Insert Architecture Diagram Here
 
-* Python
+![Architecture Diagram](screenshots/architecture.png)
 
-### Libraries & Frameworks
+### Architecture Flow
 
-* Streamlit
-* Pandas
-* NumPy
-* TA (Technical Analysis Library)
-* Python Binance SDK
-* python-dotenv
-
-### APIs
-
-* Binance Futures Testnet API
-
----
-
-## Project Architecture
-
+User
+↓
+Streamlit Dashboard
+↓
 Binance Futures API
 ↓
-Market Data Retrieval
+Market Data Processing
 ↓
-Technical Indicators
-(RSI, EMA, MACD)
+Technical Analysis Engine
 ↓
 Smart Signal Engine
 ↓
-Trading Dashboard
+Portfolio Management
 ↓
 Backtesting Engine
 ↓
@@ -127,48 +132,394 @@ Performance Analytics
 
 ---
 
-## Backtesting Results
+# 5. Technology Stack
 
-Latest Strategy Metrics:
+### Programming Language
 
-* Profit: +4.89 USDT
-* Win Rate: 36.36%
-* Profit Factor: 1.08
-* Maximum Drawdown: 3.18%
-* Sharpe Ratio: 0.04
+* Python
 
-These results demonstrate a complete workflow for evaluating trading strategies using historical data and risk-adjusted performance metrics.
+### Frontend
+
+* Streamlit
+
+### Data Processing
+
+* Pandas
+* NumPy
+
+### Visualization
+
+* Plotly
+
+### Market Data Source
+
+* Binance Futures API
+
+### Technical Analysis
+
+* TA Library
+* RSI
+* EMA
+* MACD
+
+### Version Control
+
+* Git
+* GitHub
 
 ---
 
-## Learning Outcomes
+# 6. Project Features
 
-Through this project, I gained practical experience in:
+## Live Market Prices
 
-* Financial market data analysis
-* Binance API integration
-* Algorithmic trading concepts
-* Technical indicator implementation
-* Quantitative strategy evaluation
-* Risk management techniques
+The dashboard retrieves real-time cryptocurrency prices directly from Binance Futures.
+
+Supported symbols include:
+
+* BTCUSDT
+* ETHUSDT
+* BNBUSDT
+* SOLUSDT
+
+Features:
+
+* Live price updates
+* Multiple asset monitoring
+* Real-time market visibility
+
+---
+
+## Interactive Candlestick Charts
+
+The dashboard provides dynamic candlestick chart visualization.
+
+Capabilities:
+
+* Multiple timeframe selection
+* Symbol switching
+* Market trend visualization
+* Historical candle analysis
+
+---
+
+## Technical Analysis
+
+The dashboard calculates technical indicators directly from market data.
+
+Indicators include:
+
+### RSI
+
+Relative Strength Index
+
+Purpose:
+
+* Detect overbought conditions.
+* Detect oversold conditions.
+* Identify potential reversals.
+
+### EMA
+
+Exponential Moving Average
+
+Purpose:
+
+* Identify trend direction.
+* Detect bullish crossovers.
+* Detect bearish crossovers.
+
+### MACD
+
+Moving Average Convergence Divergence
+
+Purpose:
+
+* Measure trend momentum.
+* Detect momentum shifts.
+* Confirm trend strength.
+
+---
+
+# 7. Dashboard Walkthrough
+
+## Screenshot 1 – Main Dashboard
+
+Insert Screenshot Here
+
+![Main Dashboard](screenshots/dashboard-main.png)
+
+Description:
+
+The main dashboard acts as the control center of the application.
+
+Displayed information:
+
+* Live cryptocurrency prices
+* Order placement panel
+* Market symbol selection
+* Timeframe selection
+* Navigation to analysis modules
+
+This section provides an overview of market conditions before any trading decision is made.
+
+---
+
+## Screenshot 2 – Market Analysis & Candlestick Charts
+
+Insert Screenshot Here
+
+![Market Analysis](screenshots/dashboard-chart.png)
+
+Description:
+
+This section visualizes price action using candlestick charts.
+
+Features:
+
+* Real-time market visualization
+* Symbol selection
+* Timeframe switching
+* Trend analysis
+
+Candlestick charts are the foundation of technical analysis and are used to calculate all indicators within the system.
+
+---
+
+## Screenshot 3 – Smart Trading Signal Engine
+
+Insert Screenshot Here
+
+![Trading Signals](screenshots/dashboard-signals.png)
+
+Description:
+
+The Smart Signal Engine combines multiple technical indicators to generate a final trading recommendation.
+
+Possible outputs:
+
+* BUY
+* SELL
+* HOLD
+
+The system also generates a confidence score based on indicator agreement.
+
+Example:
+
+RSI = HOLD
+
+EMA = BUY
+
+MACD = SELL
+
+Final Signal = HOLD
+
+Confidence = 33.33%
+
+This prevents reliance on a single indicator and encourages confirmation-based trading.
+
+---
+
+## Screenshot 4 – Portfolio & Trade Management
+
+Insert Screenshot Here
+
+![Portfolio Management](screenshots/dashboard-portfolio.png)
+
+Description:
+
+This section provides visibility into account performance.
+
+Displayed information:
+
+### Open Positions
+
+Shows:
+
+* Symbol
+* Position Quantity
+* Entry Price
+* Unrealized Profit/Loss
+
+### Trade History
+
+Tracks:
+
+* Time
+* Symbol
+* Order Type
+* Buy/Sell Side
+* Quantity
+
+### Account Information
+
+Displays:
+
+* Wallet Balance
+* Available Balance
+* Current Profit/Loss
+
+---
+
+# 8. Smart Signal Engine
+
+The Smart Signal Engine is the core decision-making component of the system.
+
+It combines:
+
+* RSI Signal
+* EMA Signal
+* MACD Signal
+
+Each indicator contributes one vote.
+
+Example:
+
+RSI = BUY
+
+EMA = BUY
+
+MACD = SELL
+
+BUY Votes = 2
+
+SELL Votes = 1
+
+Final Signal = BUY
+
+Confidence = 66.67%
+
+This voting mechanism reduces dependence on any single indicator.
+
+---
+
+# 9. Backtesting Engine
+
+The project includes a strategy backtesting system for evaluating performance using historical data.
+
+Features:
+
+* Historical candle analysis
+* Strategy simulation
+* Position management
+* Trade outcome tracking
+
+Backtesting allows traders to evaluate strategies before using them in live markets.
+
+---
+
+# 10. Performance Metrics
+
+The system calculates several performance metrics.
+
+### Profit / Loss
+
+Total strategy profitability.
+
+### Win Rate
+
+Percentage of profitable trades.
+
+### Profit Factor
+
+Ratio of gross profit to gross loss.
+
+### Max Drawdown
+
+Largest decline from peak balance.
+
+### Sharpe Ratio
+
+Risk-adjusted return metric.
+
+These metrics help determine whether a strategy is robust or unreliable.
+
+---
+
+# 11. Project Structure
+
+```text
+trading_bot/
+│
+├── dashboard.py
+├── market_data.py
+├── charts.py
+├── signals.py
+├── ema_strategy.py
+├── macd_strategy.py
+├── smart_signal.py
+├── backtest.py
+├── strategy_backtest.py
+├── account.py
+├── positions.py
+├── orders.py
+├── trade_history.py
+├── client.py
+├── validators.py
+│
+├── tests/
+│
+├── screenshots/
+│
+├── README.md
+├── PROJECT_DOCUMENTATION.md
+└── requirements.txt
+```
+
+# 12. Challenges Faced
+
+During development several challenges were encountered:
+
+* Binance API integration issues
+* Symbol-based signal generation bugs
+* DataFrame column mismatches
+* Technical indicator calculation errors
+* Dashboard synchronization issues
+* Backtesting logic corrections
+* Streamlit UI adjustments
+
+Each issue required debugging, testing, and code refactoring.
+
+---
+
+# 13. Key Learnings
+
+Through this project I gained practical experience in:
+
+* API integration
+* Financial market data processing
+* Technical analysis
+* Quantitative trading concepts
 * Streamlit dashboard development
-* Python project architecture
+* Backtesting methodology
+* Performance evaluation
+* Software debugging
+* Git and GitHub workflows
 
 ---
 
-## Future Improvements
+# 14. Future Scope
 
 Potential future enhancements include:
 
-* Machine Learning based signal prediction
-* Multi-asset portfolio management
-* Advanced strategy optimization
-* Trade journaling system
+* Machine Learning-based predictions
+* LSTM price forecasting
+* Sentiment analysis integration
+* News-based trading signals
+* Risk management automation
+* Portfolio optimization
+* Multi-asset strategy support
 * Cloud deployment
-* Automated trading execution
+* Real-time alerts
 
 ---
 
-## Disclaimer
+# 15. Conclusion
 
-This project is built for educational and research purposes using Binance Futures Testnet. It is not intended to provide financial advice or guarantee trading profitability.
+The AI-Powered Binance Futures Trading Dashboard successfully combines market data, technical analysis, signal generation, portfolio monitoring, and backtesting into a unified platform.
+
+The project demonstrates practical skills in Python development, API integration, financial analytics, dashboard engineering, and algorithmic trading concepts.
+
+Beyond serving as a trading analytics platform, the project provided valuable hands-on experience in building end-to-end data-driven applications and strengthened understanding of quantitative trading systems.
+
+Version 1.0 represents a stable portfolio-ready implementation suitable for demonstrating software engineering, data analysis, and financial technology development skills.
